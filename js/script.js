@@ -41,14 +41,53 @@ console.log(imagesWrapper);
 
 for (let i = 0; i < images.length; i++) {
 
+    let activeImage = "";
+
+    if (i === 0) {
+        activeImage = 'active';
+    }
+
     let currentImage = `<div class="position-relative">
-                        <img src="${images[i].url}" alt="${images[i].title}">
+                        <img class="${activeImage}" src="${images[i].url}" alt="${images[i].title}">
                         <div class="image-info">
                         <h3>${images[i].title}</h3>
                         <p>${images[i].description}</p></div>`;
 
     imagesWrapper.innerHTML += currentImage;
 }
+
+
+// Recupero i bottoni e aggiungo un addEventListener per gestire il cambio di immagine
+const prevButton = document.getElementById('prev-button');
+const nextButton = document.getElementById('next-button');
+
+const imageElements = document.querySelectorAll('.carousel-image-container img');
+
+nextButton.addEventListener('click', function () {
+
+    imageElements[i].classList.remove('active');
+
+    i++;
+
+    if (i >= imageElements.length) {
+        i = 0;
+    }
+
+    imageElements[i].classList.add('active');
+});
+
+prevButton.addEventListener('click', function () {
+
+    imageElements[i].classList.remove('active');
+
+    i--;
+
+    if (i < 0) {
+        i = imageElements.length - 1;
+    }
+
+    imageElements[i].classList.add('active');
+});
 
 
 
