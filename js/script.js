@@ -37,35 +37,40 @@ console.log(images);
 let i = 0;
 
 const imagesWrapper = document.querySelector('.carousel-wrapper .carousel-image-container');
-console.log(imagesWrapper);
+const thumbnailsWrapper = document.querySelector('.carousel-wrapper .thumbnails-container');
 
 for (let i = 0; i < images.length; i++) {
 
     let activeImage = "";
+    let activeText = "";
 
     if (i === 0) {
         activeImage = 'active';
+        activeText = 'active';
     }
 
     let currentImage = `<div class="position-relative">
-                        <img class="${activeImage}" src="${images[i].url}" alt="${images[i].title}">
-                        <div class="image-info">
-                        <h3>${images[i].title}</h3>
-                        <p>${images[i].description}</p></div>`;
+                            <img class="${activeImage}" src="${images[i].url}" alt="${images[i].title}">
+                            <div class="image-info position-absolute top-50 start-50 translate-middle ${activeText}">
+                                <h3>${images[i].title}</h3>
+                                <p>${images[i].description}</p>
+                            </div>
+                        </div>`;
 
     imagesWrapper.innerHTML += currentImage;
 }
 
-
-// Recupero i bottoni e aggiungo un addEventListener per gestire il cambio di immagine
+// Recupero i bottoni e aggiungo un addEventListener per gestire il cambio di immagine e testo
 const prevButton = document.getElementById('prev-button');
 const nextButton = document.getElementById('next-button');
 
 const imageElements = document.querySelectorAll('.carousel-image-container img');
+const imageInfo = document.querySelectorAll('.carousel-image-container .image-info');
 
 nextButton.addEventListener('click', function () {
 
     imageElements[i].classList.remove('active');
+    imageInfo[i].classList.remove('active');
 
     i++;
 
@@ -74,11 +79,13 @@ nextButton.addEventListener('click', function () {
     }
 
     imageElements[i].classList.add('active');
+    imageInfo[i].classList.add('active');
 });
 
 prevButton.addEventListener('click', function () {
 
     imageElements[i].classList.remove('active');
+    imageInfo[i].classList.remove('active');
 
     i--;
 
@@ -87,6 +94,7 @@ prevButton.addEventListener('click', function () {
     }
 
     imageElements[i].classList.add('active');
+    imageInfo[i].classList.add('active');
 });
 
 

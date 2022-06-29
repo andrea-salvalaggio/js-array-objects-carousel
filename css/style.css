@@ -27,11 +27,12 @@
     color: #306ff4;
 }
 
+.carousel-wrapper .carousel-image-container .image-info.active {
+    display: block;
+}
+
 .image-info {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: none;
     text-align: center;
     color: white;
 }
